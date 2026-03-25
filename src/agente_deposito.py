@@ -1,5 +1,5 @@
 from src.usuario import Usuario
-
+"""Clase abstracta"""
 class AgenteDeposito(Usuario):
 
     def __init__(self, id_usuario: int, nombre: str,
