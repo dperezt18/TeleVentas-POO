@@ -1,3 +1,5 @@
+"""Programa principal del sistema TeleVentas."""
+
 from datetime import date
 
 from src.cliente import Cliente
@@ -31,9 +33,15 @@ def mostrar_usuarios_prueba():
 
 def autenticar():
     usuarios_validos = {
-        "Diunis Perez": {"contrasena": "1234", "rol": "Cliente"},
-        "Carlos": {"contrasena": "5678", "rol": "Agente de Depósito"},
-        "Laura": {"contrasena": "abcd", "rol": "Gerente de Relaciones"}
+        "Diunis Perez": {
+            "contrasena": "1234", "rol": "Cliente",
+        },
+        "Carlos": {
+            "contrasena": "5678", "rol": "Agente de Depósito",
+        },
+        "Laura": {
+            "contrasena": "abcd", "rol": "Gerente de Relaciones",
+        },
     }
 
     print("===== INICIO DE SESIÓN =====")
@@ -42,7 +50,9 @@ def autenticar():
     usuario = input("Usuario: ").strip()
     contrasena = input("Contraseña: ").strip()
 
-    if usuario in usuarios_validos and usuarios_validos[usuario]["contrasena"] == contrasena:
+    if (usuario in usuarios_validos
+            and usuarios_validos[usuario]["contrasena"]
+            == contrasena):
         print(f"\nBienvenido/a {usuario}")
         print(f"Rol: {usuarios_validos[usuario]['rol']}")
         return usuario, usuarios_validos[usuario]["rol"]
@@ -67,7 +77,9 @@ def mostrar_menu(rol):
 
 
 def volver_al_menu():
-    respuesta = input("\n¿Desea volver al menú principal? (s/n): ").strip().lower()
+    respuesta = input(
+        "\n¿Desea volver al menú principal? (s/n): "
+    ).strip().lower()
     return respuesta == "s"
 
 
@@ -75,18 +87,22 @@ def tiene_permiso(rol, opcion):
     permisos = {
         "Cliente": ["1", "2", "4", "6", "7", "8", "0"],
         "Agente de Depósito": ["1", "2", "5", "7", "8", "0"],
-        "Gerente de Relaciones": ["1", "2", "3", "7", "8", "0"]
+        "Gerente de Relaciones": ["1", "2", "3", "7", "8", "0"],
     }
     return opcion in permisos.get(rol, [])
 
 
-def mostrar_resumen(cliente, direccion, orden_actual, pago_actual, pedido_actual, queja_actual):
+def mostrar_resumen(cliente, direccion, orden_actual,
+                    pago_actual, pedido_actual,
+                    queja_actual):
     print("\n========== RESUMEN DEL SISTEMA ==========")
 
     print("\n--- Cliente ---")
     print("Nombre:", cliente.get_nombre())
     print("Email:", cliente.get_email())
-    print("Dirección:", direccion.obtener_direccion_completa())
+    print(
+        "Dirección:", direccion.obtener_direccion_completa()
+    )
 
     print("\n--- Orden actual ---")
     if orden_actual is None:
@@ -99,7 +115,10 @@ def mostrar_resumen(cliente, direccion, orden_actual, pago_actual, pedido_actual
         print("No hay pago registrado.")
     else:
         try:
-            print("Estado del pago:", pago_actual.obtener_estado())
+            print(
+                "Estado del pago:",
+                pago_actual.obtener_estado(),
+            )
         except Exception:
             print(pago_actual)
 
@@ -162,8 +181,12 @@ def main():
     catalogo = Catalogo()
 
     # ===== PRODUCTOS INICIALES =====
-    producto1 = Producto(1, "TV001", "Televisor 50 pulgadas", 1800000.0, 5)
-    producto2 = Producto(2, "AUD001", "Audifonos inalambricos", 250000.0, 10)
+    producto1 = Producto(
+        1, "TV001", "Televisor 50 pulgadas", 1800000.0, 5,
+    )
+    producto2 = Producto(
+        2, "AUD001", "Audifonos inalambricos", 250000.0, 10,
+    )
 
     catalogo.agregar_producto(producto1)
     catalogo.agregar_producto(producto2)
@@ -184,7 +207,10 @@ def main():
             break
 
         if not tiene_permiso(rol, opcion):
-            print("\nError: su rol no tiene permiso para realizar esta acción.")
+            print(
+                "\nError: su rol no tiene permiso "
+                "para realizar esta acción."
+            )
             if not volver_al_menu():
                 print("Saliendo del sistema...")
                 break
@@ -198,14 +224,18 @@ def main():
             print("\n--- PRODUCTOS DISPONIBLES ---")
             catalogo.listar_productos()
 
-            codigo = input("\nIngrese el código del producto: ").strip()
+            codigo = input(
+                "\nIngrese el código del producto: "
+            ).strip()
             producto = catalogo.buscar_producto(codigo)
 
             if producto:
                 print("\nProducto encontrado:")
                 print(producto)
             else:
-                print("No se encontró un producto con ese código.")
+                print(
+                    "No se encontró un producto con ese código."
+                )
 
         elif opcion == "3":
             try:
@@ -218,15 +248,24 @@ def main():
                 precio = float(input("Precio: "))
                 cantidad = int(input("Cantidad: "))
 
-                nuevo_producto = Producto(id_producto, codigo, descripcion, precio, cantidad)
+                nuevo_producto = Producto(
+                    id_producto, codigo, descripcion,
+                    precio, cantidad,
+                )
                 catalogo.agregar_producto(nuevo_producto)
 
-                print("Producto agregado correctamente al catálogo.")
+                print(
+                    "Producto agregado correctamente "
+                    "al catálogo."
+                )
 
                 gerente.logout()
 
             except ValueError:
-                print("Error: revise los valores numéricos ingresados.")
+                print(
+                    "Error: revise los valores numéricos "
+                    "ingresados."
+                )
 
         elif opcion == "4":
             try:
@@ -234,13 +273,22 @@ def main():
                 print("Productos disponibles en el catálogo:")
                 catalogo.listar_productos()
 
-                codigo = input("\nIngrese el código del producto que desea comprar: ").strip()
+                codigo = input(
+                    "\nIngrese el código del producto "
+                    "que desea comprar: "
+                ).strip()
                 producto = catalogo.buscar_producto(codigo)
 
                 if producto is None:
-                    print("No se encontró el producto. Verifique el código e intente nuevamente.")
+                    print(
+                        "No se encontró el producto. "
+                        "Verifique el código e intente "
+                        "nuevamente."
+                    )
                 else:
-                    cantidad = int(input("Ingrese la cantidad: "))
+                    cantidad = int(
+                        input("Ingrese la cantidad: ")
+                    )
                     descuento = 0.0
 
                     detalle_actual = DetallePedido(
@@ -259,18 +307,32 @@ def main():
                         "Pendiente"
                     )
 
-                    print("\nOrden de compra creada correctamente.")
-                    print("Descuento aplicado automáticamente: 0.0")
+                    print(
+                        "\nOrden de compra creada "
+                        "correctamente."
+                    )
+                    print(
+                        "Descuento aplicado "
+                        "automáticamente: 0.0"
+                    )
                     print("Subtotal calculado:", subtotal)
-                    print("Valor total:", orden_actual.get_valor_total())
+                    print(
+                        "Valor total:",
+                        orden_actual.get_valor_total(),
+                    )
 
                     orden_actual.confirmar()
 
                     print("\n--- DATOS DE LA TARJETA ---")
-                    numero = input("Número de tarjeta: ").strip()
+                    numero = input(
+                        "Número de tarjeta: "
+                    ).strip()
                     titular = input("Titular: ").strip()
                     fecha_vencimiento = date.fromisoformat(
-                        input("Fecha de vencimiento (AAAA-MM-DD): ").strip()
+                        input(
+                            "Fecha de vencimiento "
+                            "(AAAA-MM-DD): "
+                        ).strip()
                     )
                     cvv = input("CVV: ").strip()
 
@@ -289,14 +351,23 @@ def main():
                     pago_actual.procesar()
 
                     print("\nPago procesado correctamente.")
-                    print("Estado del pago:", pago_actual.obtener_estado())
+                    print(
+                        "Estado del pago:",
+                        pago_actual.obtener_estado(),
+                    )
 
             except ValueError:
-                print("Error: revise la cantidad o el formato de la fecha.")
+                print(
+                    "Error: revise la cantidad o "
+                    "el formato de la fecha."
+                )
 
         elif opcion == "5":
             if orden_actual is None or pago_actual is None:
-                print("Primero debe existir una compra pagada para crear el pedido.")
+                print(
+                    "Primero debe existir una compra "
+                    "pagada para crear el pedido."
+                )
             else:
                 print("\n--- CREAR PEDIDO ---")
 
@@ -318,7 +389,9 @@ def main():
 
         elif opcion == "6":
             print("\n--- PRESENTAR QUEJA ---")
-            descripcion = input("Escriba la queja: ").strip()
+            descripcion = input(
+                "Escriba la queja: "
+            ).strip()
 
             queja_actual = Queja(
                 1,
@@ -331,7 +404,10 @@ def main():
 
             try:
                 gerente.login()
-                print("El gerente de relaciones fue notificado.")
+                print(
+                    "El gerente de relaciones "
+                    "fue notificado."
+                )
                 gerente.logout()
             except Exception:
                 print("La queja fue enviada al gerente.")
@@ -342,8 +418,14 @@ def main():
             print("\n--- DATOS DEL CLIENTE ---")
             print("Nombre:", cliente.get_nombre())
             print("Email:", cliente.get_email())
-            print("Dirección:", direccion.obtener_direccion_completa())
-            print("Usuario autenticado:", usuario_autenticado)
+            print(
+                "Dirección:",
+                direccion.obtener_direccion_completa(),
+            )
+            print(
+                "Usuario autenticado:",
+                usuario_autenticado,
+            )
             print("Rol activo:", rol)
 
         elif opcion == "8":
