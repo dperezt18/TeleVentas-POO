@@ -1,6 +1,10 @@
+"""Módulo que define la clase AgenteDeposito."""
+
 from src.usuario import Usuario
-"""Clase abstracta"""
+
+
 class AgenteDeposito(Usuario):
+    """Representa un agente del depósito."""
 
     def __init__(self, id_usuario: int, nombre: str,
                  email: str, contrasena: str, deposito: str):
@@ -28,4 +32,3 @@ class AgenteDeposito(Usuario):
     # --- Setter ---
     def set_deposito(self, deposito: str):
         self.__deposito = deposito
-
