@@ -1,9 +1,15 @@
+"""Módulo que define la clase TarjetaDeCredito."""
+
 from src.pago import Pago
 from datetime import date
 
+
 class TarjetaDeCredito(Pago):
-    def __init__(self, id_pago: int, monto: float, fecha: date, numero: str, titular: str, fecha_vencimiento: date,
-                 cvv: str):
+    """Representa un pago con tarjeta de crédito."""
+
+    def __init__(self, id_pago: int, monto: float,
+                 fecha: date, numero: str, titular: str,
+                 fecha_vencimiento: date, cvv: str):
         super().__init__(id_pago, monto, fecha)
         self.__numero = numero
         self.__titular = titular
@@ -24,5 +30,3 @@ class TarjetaDeCredito(Pago):
     def autorizar(self) -> bool:
         print("Pago autorizado")
         return True
-
-
