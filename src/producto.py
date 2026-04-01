@@ -1,13 +1,19 @@
-class Producto:
+"""Módulo que define la clase Producto."""
 
-    def __init__(self, id_producto: int, codigo:str, descripcion: str, precio: float, cantidad: int):
+
+class Producto:
+    """Representa un producto del catálogo."""
+
+    def __init__(self, id_producto: int, codigo: str,
+                 descripcion: str, precio: float,
+                 cantidad: int):
         self.__id_producto = id_producto
         self.__codigo = codigo
         self.__descripcion = descripcion
         self.__precio = precio
         self.__cantidad = cantidad
 
-    #Getter
+    # --- Getter ---
     def get_id_producto(self) -> int:
         return self.__id_producto
 
@@ -23,7 +29,7 @@ class Producto:
     def get_cantidad(self) -> int:
         return self.__cantidad
 
-    #Setter
+    # --- Setter ---
     def set_id_producto(self, id_producto: int):
         self.__id_producto = id_producto
 
@@ -40,7 +46,9 @@ class Producto:
         self.__cantidad = cantidad
 
     def __str__(self) -> str:
-        return (f"Codigo: {self.__codigo}\n"
-        f"Descripcion: {self.__descripcion}\n"
-        f"Precio: {self.__precio}\n"
-        f"Cantidad: {self.__cantidad}")
+        return (
+            f"Codigo: {self.__codigo}\n"
+            f"Descripcion: {self.__descripcion}\n"
+            f"Precio: {self.__precio}\n"
+            f"Cantidad: {self.__cantidad}"
+        )
