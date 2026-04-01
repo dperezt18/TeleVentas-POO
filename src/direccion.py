@@ -1,13 +1,19 @@
-class Direccion:
+"""Módulo que define la clase Direccion."""
 
-    def __init__ (self, calle: str, ciudad: str, departamento: str, codigo_postal: str, pais: str):
+
+class Direccion:
+    """Representa una dirección de envío."""
+
+    def __init__(self, calle: str, ciudad: str,
+                 departamento: str, codigo_postal: str,
+                 pais: str):
         self.__calle = calle
         self.__ciudad = ciudad
         self.__departamento = departamento
         self.__codigo_postal = codigo_postal
         self.__pais = pais
 
-# --- Getters ---
+    # --- Getters ---
     def get_calle(self) -> str:
         return self.__calle
 
@@ -23,7 +29,7 @@ class Direccion:
     def get_pais(self) -> str:
         return self.__pais
 
-#Setters
+    # --- Setters ---
     def set_calle(self, calle: str):
         self.__calle = calle
 
@@ -40,4 +46,8 @@ class Direccion:
         self.__pais = pais
 
     def obtener_direccion_completa(self):
-        return f"{self.__calle}, {self.__ciudad}, {self.__departamento}, {self.__codigo_postal}, {self.__pais}"
+        return (
+            f"{self.__calle}, {self.__ciudad}, "
+            f"{self.__departamento}, {self.__codigo_postal}, "
+            f"{self.__pais}"
+        )
