@@ -1,7 +1,13 @@
+"""Módulo que define la clase Pedido."""
+
 from datetime import date
 
+
 class Pedido:
-    def __init__(self, id_pedido: int, fecha: date, estado: str, empresa_transporte: str):
+    """Representa un pedido de productos."""
+
+    def __init__(self, id_pedido: int, fecha: date,
+                 estado: str, empresa_transporte: str):
         self.__id_pedido = id_pedido
         self.__fecha = fecha
         self.__estado = estado
@@ -15,7 +21,7 @@ class Pedido:
         self.__estado = "Despachado"
         print("El pedido ha sido despachado con éxito")
 
-# --- Getters ---
+    # --- Getters ---
     def get_id_pedido(self) -> int:
         return self.__id_pedido
 
@@ -27,4 +33,3 @@ class Pedido:
 
     def get_empresa_transporte(self) -> str:
         return self.__empresa_transporte
-
