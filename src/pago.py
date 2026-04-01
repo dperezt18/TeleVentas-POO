@@ -1,7 +1,12 @@
+"""Módulo que define la clase abstracta Pago."""
+
 from abc import ABC, abstractmethod
 from datetime import date
 
+
 class Pago(ABC):
+    """Clase abstracta que representa un pago."""
+
     def __init__(self, id_pago: int, monto: float, fecha: date):
         self.__id_pago = id_pago
         self.__monto = monto
@@ -15,7 +20,7 @@ class Pago(ABC):
     def obtener_estado(self) -> str:
         pass
 
-#getter
+    # --- Getter ---
     def get_id_pago(self) -> int:
         return self.__id_pago
 
@@ -24,5 +29,3 @@ class Pago(ABC):
 
     def get_fecha(self) -> date:
         return self.__fecha
-
-
