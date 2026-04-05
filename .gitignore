@@ -18,7 +18,5 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Imágenes del diagrama (opcional)
-*.jpeg
-*.jpg
-*.png
+# OS
+*.DS_Store
