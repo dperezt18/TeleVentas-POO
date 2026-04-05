@@ -6,7 +6,7 @@ Sistema orientado a objetos para soporte de compras a distancia. Permite a los c
 
 ## Diagrama UML
 
-![Diagrama de Clases UML](Clase%20UML-3.jpeg)
+![Diagrama de Clases UML](TeleventasUML.jpeg)
 
 ## Cómo Ejecutar
 
@@ -27,7 +27,7 @@ El sistema presenta un menú interactivo con 3 roles:
 ```
 TeleVentas-POO/
 ├── main.py                    # Programa principal interactivo
-├── src/
+├── Clases
 │   ├── __init__.py
 │   ├── usuario.py             # Clase abstracta Usuario (ABC)
 │   ├── cliente.py             # Hereda de Usuario
@@ -42,8 +42,6 @@ TeleVentas-POO/
 │   ├── tarjeta_credito.py     # Hereda de Pago
 │   ├── queja.py               # Quejas de clientes
 │   └── direccion.py           # Dirección de envío
-├── Clase UML-3.jpeg           # Diagrama UML
-└── .gitignore
 ```
 
 ## Funcionalidades por Rol

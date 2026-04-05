@@ -1,6 +1,6 @@
 """Módulo que define la clase TarjetaDeCredito."""
 
-from src.pago import Pago
+from TeleVentas.Clases.pago import Pago
 from datetime import date
 
 

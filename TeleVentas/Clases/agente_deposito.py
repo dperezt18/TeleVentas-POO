@@ -1,6 +1,6 @@
 """Módulo que define la clase AgenteDeposito."""
 
-from src.usuario import Usuario
+from TeleVentas.Clases.usuario import Usuario
 
 
 class AgenteDeposito(Usuario):

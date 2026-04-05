@@ -1,6 +1,6 @@
 """Módulo que define la clase Cliente."""
 
-from src.usuario import Usuario
+from TeleVentas.Clases.usuario import Usuario
 
 
 class Cliente(Usuario):

@@ -1,6 +1,6 @@
 """Módulo que define la clase GerenteRelaciones."""
 
-from src.usuario import Usuario
+from TeleVentas.Clases.usuario import Usuario
 
 
 class GerenteRelaciones(Usuario):
